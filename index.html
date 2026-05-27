@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TowerAI – Telecom SR Automation Platform</title>
+  <meta name="description" content="AI-powered Service Request automation platform for telecom tower infrastructure companies in India." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="light-theme">
+
+  <!-- ===== LOGIN SCREEN ===== -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-grid-bg"></div>
+    <div class="login-orb orb-1"></div>
+    <div class="login-orb orb-2"></div>
+    <div class="login-orb orb-3"></div>
+
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-brand-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="login-brand-name">TowerAI</span>
+        <span class="login-brand-badge">ENTERPRISE</span>
+      </div>
+
+      <h2 class="login-title">Welcome Back</h2>
+      <p class="login-subtitle">Sign in to your operations portal</p>
+      <p class="login-company">TowerCo Infrastructure Pvt. Ltd.</p>
+
+      <form id="login-form" class="login-form">
+        <div class="login-field-group">
+          <label class="login-label" for="login-email">Login ID</label>
+          <div class="login-input-wrap">
+            <svg class="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/>
+              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <input class="login-input" type="email" id="login-email" placeholder="your.role@ai.com" autocomplete="username" />
+          </div>
+        </div>
+        <div class="login-field-group">
+          <label class="login-label" for="login-password">Password</label>
+          <div class="login-input-wrap">
+            <svg class="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <input class="login-input" type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password" />
+            <button type="button" class="login-pw-toggle" id="login-pw-toggle" title="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="login-error-box" id="login-error-box" style="display:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2"/><line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2"/></svg>
+          <span id="login-error-text">Invalid Login ID or Password. Please try again.</span>
+        </div>
+        <button type="submit" class="login-submit" id="login-submit">
+          <span id="login-submit-text">Sign In</span>
+          <div class="login-spinner" id="login-spinner" style="display:none"></div>
+          <svg id="login-submit-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="12,5 19,12 12,19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+
+      <div class="login-demo-creds">
+        <div class="login-demo-header">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2"/></svg>
+          Demo Credentials · Click row to auto-fill
+        </div>
+        <div class="login-demo-item" onclick="fillCreds('circle')">
+          <span class="login-demo-role circle-role">📍 Circle Sales</span>
+          <div class="login-demo-details">
+            <code>sales.bihar@ai.com</code>
+            <code class="login-demo-pwd">abc123</code>
+          </div>
+          <span class="login-demo-fill">Fill →</span>
+        </div>
+        <div class="login-demo-item" onclick="fillCreds('corporate')">
+          <span class="login-demo-role corporate-role">🏢 Corporate</span>
+          <div class="login-demo-details">
+            <code>sales.corporate@ai.com</code>
+            <code class="login-demo-pwd">abc123</code>
+          </div>
+          <span class="login-demo-fill">Fill →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-footer-brand">
+      © 2026 TowerCo Infrastructure Pvt. Ltd. · Powered by <strong>TowerAI</strong>
+    </div>
+  </div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="brand-text">TowerAI</span>
+      <span class="brand-badge">BETA</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">OVERVIEW</div>
+      <a class="nav-item active" data-view="dashboard" href="#" id="nav-dashboard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>
+        Dashboard
+        <span class="nav-badge danger" id="nav-badge-breaches">3</span>
+      </a>
+
+      <div class="nav-section-label">INTAKE</div>
+      <a class="nav-item" data-view="inbox" href="#" id="nav-inbox">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/></svg>
+        Email
+        <span class="nav-badge warning" id="nav-badge-emails">7</span>
+      </a>
+
+      <div class="nav-section-label">WORKFLOWS</div>
+      <a class="nav-item" data-view="sr-board" href="#" id="nav-sr-board">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        SR Intake
+      </a>
+      <a class="nav-item" data-view="sp-creation" href="#" id="nav-sp-creation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2"/><line x1="12" y1="18" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-width="2"/></svg>
+        SP Creation
+      </a>
+      <a class="nav-item" data-view="so-recieval" href="#" id="nav-so-recieval">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2"/></svg>
+        SO Recieval
+      </a>
+      <a class="nav-item" data-view="rfi-recieval" href="#" id="nav-rfi-recieval">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        RFIP Readiness
+        <span class="nav-badge info" id="nav-badge-rfi">3</span>
+      </a>
+
+      <div class="nav-section-label">MONITORING</div>
+      <a class="nav-item" data-view="sla-tracker" href="#" id="nav-sla-tracker">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="2"/></svg>
+        SLA Tracker
+        <span class="nav-badge danger" id="nav-badge-sla">2</span>
+      </a>
+      <a class="nav-item" data-view="analytics" href="#" id="nav-analytics">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><line x1="18" y1="20" x2="18" y2="10" stroke="currentColor" stroke-width="2"/><line x1="12" y1="20" x2="12" y2="4" stroke="currentColor" stroke-width="2"/><line x1="6" y1="20" x2="6" y2="14" stroke="currentColor" stroke-width="2"/></svg>
+        Analytics
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="ai-status">
+        <span class="ai-pulse"></span>
+        <span>AI Engine Active</span>
+      </div>
+      <div class="sidebar-user">
+        <div class="user-avatar" id="sidebar-avatar">SK</div>
+        <div class="user-info">
+          <div class="user-name" id="sidebar-name">Loading...</div>
+          <div class="user-role" id="sidebar-role">—</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="breadcrumb" id="breadcrumb">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/></svg>
+          <input type="text" placeholder="Search SR, Site ID, Operator..." id="global-search" />
+        </div>
+        <div class="user-role-badge" id="user-role-badge"></div>
+        <button class="btn-icon" title="Toggle Theme" id="theme-toggle-btn">
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="btn-icon" title="Notifications" id="notif-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2"/></svg>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="btn-icon logout-btn" id="logout-btn" title="Sign Out">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="16,17 21,12 16,7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="current-time" id="current-time"></div>
+      </div>
+    </header>
+
+    <!-- VIEW CONTAINER -->
+    <div class="view-container">
+
+      <!-- ===== DASHBOARD ===== -->
+      <div class="view active" id="view-dashboard">
+        <div class="view-header">
+          <h1 id="dashboard-title">Operations Dashboard</h1>
+          <p class="view-subtitle" id="dashboard-subtitle">AI-powered SR automation | Telecom Tower Infrastructure</p>
+        </div>
+        <div class="kpi-grid" id="kpi-grid"></div>
+
+        <div class="charts-row">
+          <div class="chart-card wide">
+            <div class="chart-header">
+              <h3 id="chart-operator-title">SR Volume by Operator</h3>
+              <div class="chart-legend">
+                <span class="legend-dot" style="background:#6366f1"></span>Jio
+                <span class="legend-dot" style="background:#f59e0b"></span>Airtel
+                <span class="legend-dot" style="background:#10b981"></span>Vi
+                <span class="legend-dot" style="background:#ef4444"></span>BSNL
+              </div>
+            </div>
+            <canvas id="operatorChart" height="180"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>SR Type Distribution</h3></div>
+            <canvas id="typeChart" height="180"></canvas>
+          </div>
+        </div>
+
+        <div class="bottom-row">
+          <div class="activity-card">
+            <div class="card-header">
+              <h3>Recent AI Activity</h3>
+              <span class="live-badge">● LIVE</span>
+            </div>
+            <div class="activity-feed" id="activity-feed"></div>
+          </div>
+          <div class="breach-card">
+            <div class="card-header">
+              <h3>SLA Breach Alerts</h3>
+              <span class="alert-count" id="breach-count">3 Active</span>
+            </div>
+            <div class="breach-list" id="breach-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== EMAIL INBOX ===== -->
+      <div class="view" id="view-inbox">
+        <div class="view-header">
+          <h1>Email Inbox – AI Parser</h1>
+          <p class="view-subtitle">AI extracts SR data from incoming operator emails</p>
+        </div>
+        <div class="inbox-layout">
+          <div class="email-list-panel">
+            <div class="panel-toolbar">
+              <span class="panel-title" id="inbox-count-label">Inbox</span>
+              <button class="btn-sm btn-primary" id="run-ai-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.5"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke="currentColor" stroke-width="2"/></svg>
+                Run AI on All
+              </button>
+            </div>
+            <div class="email-list" id="email-list"></div>
+          </div>
+          <div class="email-detail-panel" id="email-detail-panel">
+            <div class="no-selection">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
+              <p>Select an email to view AI extraction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SR BOARD ===== -->
+      <div class="view" id="view-sr-board">
+        <div class="view-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+          <div>
+            <h1>SR Management Board</h1>
+            <p class="view-subtitle">Track and manage service requests across lifecycle stages</p>
+          </div>
+          <div class="view-toggle" id="sr-view-toggle" style="display:flex; gap:4px; background:var(--bg-card); border:1px solid var(--border); padding:4px; border-radius:var(--radius-sm);">
+            <button class="tab-btn" data-style="grid" style="padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:transparent; color:var(--text-secondary); font-weight:600; cursor:pointer;">Grid View</button>
+            <button class="tab-btn active" data-style="row" style="padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:var(--accent); color:white; font-weight:600; cursor:pointer;">Row View</button>
+          </div>
+        </div>
+        
+        <!-- Grid View (Kanban) -->
+        <div class="kanban-board" id="kanban-board" style="display:none;"></div>
+        
+        <!-- Row View -->
+        <div class="so-row-table-wrap" id="sr-row-table-wrap" style="display:block;">
+          <div class="rfi-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>SR ID</th>
+                  <th>Site ID</th>
+                  <th>Operator</th>
+                  <th>Circle</th>
+                  <th>Priority</th>
+                  <th>Lifecycle Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="sr-row-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SP CREATION ===== -->
+      <div class="view" id="view-sp-creation">
+        <div class="view-header">
+          <h1>SP Creation Workflow</h1>
+          <p class="view-subtitle">Auto-populated service plan forms from AI-extracted SR data</p>
+        </div>
+        <div class="sp-layout">
+          <div class="sp-list-panel">
+            <div class="panel-toolbar" style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <span class="panel-title" id="sp-count-label">Pending SP Creation</span>
+              <div style="display:flex; gap:6px; align-items:center;">
+                <button class="btn-sm" id="submit-all-completed-btn" style="background:var(--green-bg); color:var(--green); border:1px solid rgba(34,197,94,0.3); font-size:11px; padding:5px 10px; border-radius:6px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:4px; transition:all 0.2s ease;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="currentColor"/></svg>
+                  Submit Completed
+                </button>
+                <button class="btn-sm" id="auto-nudge-all-btn" style="background:var(--purple-bg); color:var(--purple); border:1px solid rgba(168,85,247,0.3); font-size:11px; padding:5px 10px; border-radius:6px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:4px; transition:all 0.2s ease;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor"/></svg>
+                  Auto Nudge All
+                </button>
+              </div>
+            </div>
+            <div class="sp-list" id="sp-list"></div>
+          </div>
+          <div class="sp-form-panel" id="sp-form-panel">
+            <div class="no-selection">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="1.5"/></svg>
+              <p>Select an SR to populate SP form</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SO RECIEVAL ===== -->
+      <div class="view" id="view-so-recieval">
+        <div class="view-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+          <div>
+            <h1>SO Recieval</h1>
+            <p class="view-subtitle">Service Order processing and workflow ingestion</p>
+          </div>
+          <div class="view-toggle" id="so-view-toggle" style="display:flex; gap:4px; background:var(--bg-card); border:1px solid var(--border); padding:4px; border-radius:var(--radius-sm);">
+            <button class="tab-btn" data-style="grid" style="padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:transparent; color:var(--text-secondary); font-weight:600; cursor:pointer;">Grid View</button>
+            <button class="tab-btn active" data-style="row" style="padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:var(--accent); color:white; font-weight:600; cursor:pointer;">Row View</button>
+          </div>
+        </div>
+        
+        <!-- Grid View -->
+        <div class="so-grid" id="so-grid" style="display:none;"></div>
+        
+        <!-- Row View -->
+        <div class="so-row-table-wrap" id="so-row-table-wrap">
+          <div class="rfi-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>SO Number</th><th>SR Reference</th><th>Site ID</th><th>Operator</th><th>Circle</th><th>BTS Type</th><th>Planned GoLive</th><th>Ingestion Status</th><th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="so-row-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== RFIP READINESS ===== -->
+      <div class="view" id="view-rfi-recieval">
+        <div class="view-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+          <div>
+            <h1>RFIP Readiness – Ready for Installation</h1>
+            <p class="view-subtitle">Monitor tower construction completion and schedule operator equipment installation</p>
+          </div>
+          <div class="view-toggle" id="rfi-view-toggle" style="display:flex; gap:4px; background:var(--bg-card); border:1px solid var(--border); padding:4px; border-radius:var(--radius-sm);">
+            <button class="tab-btn" data-style="grid" style="padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:transparent; color:var(--text-secondary); font-weight:600; cursor:pointer;">Grid View</button>
+            <button class="tab-btn active" data-style="row" style="padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:var(--accent); color:white; font-weight:600; cursor:pointer;">Row View</button>
+          </div>
+        </div>
+        
+        <div class="rfi-kpi-row" id="rfi-kpi-row"></div>
+        
+        <!-- Grid View -->
+        <div class="rfi-grid" id="rfi-grid" style="display:none;"></div>
+        
+        <!-- Row View -->
+        <div class="rfi-row-table-wrap" id="rfi-row-table-wrap">
+          <div class="rfi-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>RFI Ref</th><th>Site ID</th><th>Operator</th><th>Circle</th><th>Tower Style</th><th>Completion</th><th>Power supply</th><th>Checks</th><th>Equipment Status</th><th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="rfi-row-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SLA TRACKER ===== -->
+      <div class="view" id="view-sla-tracker">
+        <div class="view-header">
+          <h1>SLA Milestone Tracker</h1>
+          <p class="view-subtitle">Real-time SLA monitoring with milestone-level visibility per SR</p>
+        </div>
+        <div class="sla-filters">
+          <select id="sla-filter-status">
+            <option value="all">All Status</option>
+            <option value="green">On Track</option>
+            <option value="amber">At Risk</option>
+            <option value="red">Breached</option>
+          </select>
+          <select id="sla-filter-operator">
+            <option value="all">All Operators</option>
+            <option value="Jio">Jio</option>
+            <option value="Airtel">Airtel</option>
+            <option value="Vi">Vi</option>
+            <option value="BSNL">BSNL</option>
+          </select>
+        </div>
+        <div class="sla-list" id="sla-list"></div>
+      </div>
+
+      <!-- ===== ANALYTICS ===== -->
+      <div class="view" id="view-analytics">
+        <div class="view-header">
+          <h1>Analytics &amp; Insights</h1>
+          <p class="view-subtitle" id="analytics-subtitle">Performance metrics and trend analysis for SR automation</p>
+        </div>
+        <div class="analytics-grid">
+          <div class="chart-card">
+            <div class="chart-header"><h3>SLA Compliance Trend (Weekly)</h3></div>
+            <canvas id="slaComplianceChart" height="200"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>AI Extraction Accuracy by Field</h3></div>
+            <canvas id="aiAccuracyChart" height="200"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>RFI Aging Distribution</h3></div>
+            <canvas id="rfiAgingChart" height="200"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>SR TAT Distribution (Hours)</h3></div>
+            <canvas id="tatChart" height="200"></canvas>
+          </div>
+        </div>
+        <div class="circle-performance">
+          <div class="card-header"><h3 id="perf-table-title">Circle-wise Performance</h3></div>
+          <div class="circle-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th id="perf-col1">Circle</th><th>Total SRs</th><th>Auto-Processed</th><th>SLA Compliance</th><th>Avg TAT</th><th>Breaches</th></tr>
+              </thead>
+              <tbody id="circle-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+    </div><!-- end view-container -->
+
+    <!-- BOTTOM AI TECHNOLOGY DRAWER -->
+    <div class="ai-tech-bar collapsed" id="ai-tech-bar">
+      <div class="ai-tech-header" id="ai-tech-toggle">
+        <div class="ai-tech-title">
+          <span class="ai-tech-pulse"></span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>AI Technologies Used in Solution</span>
+        </div>
+        <div class="ai-tech-action">
+          <span class="ai-tech-status-badge">5 Engines Active</span>
+          <svg class="ai-tech-caret" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="ai-tech-content">
+        <div class="ai-tech-grid">
+          <div class="ai-tech-card">
+            <div class="ai-tech-card-header">
+              <div class="ai-tech-icon intake"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+              <h4>SR Intake & Email Parsing</h4>
+            </div>
+            <p><strong>Multimodal LLMs (Gemini Pro)</strong> &amp; <strong>Named Entity Recognition (NER)</strong>. Automatically classifies incoming operator requests, scans unstructured email body content, and maps parameters with 98% validation accuracy.</p>
+          </div>
+          <div class="ai-tech-card">
+            <div class="ai-tech-card-header">
+              <div class="ai-tech-icon creation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"/></svg></div>
+              <h4>SP Creation & Spec Mapping</h4>
+            </div>
+            <p><strong>Geospatial APIs</strong> &amp; <strong>Document AI Parser</strong>. Translates lat/long coordinates, validates structural heights against local government air-traffic databases, and populates baseline tower specifications.</p>
+          </div>
+          <div class="ai-tech-card">
+            <div class="ai-tech-card-header">
+              <div class="ai-tech-icon recieval"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <h4>SO Ingestion & Audit</h4>
+            </div>
+            <p><strong>Intelligent Character Recognition (ICR)</strong> &amp; <strong>Layout Analysis</strong>. Audits formal Service Order PDFs, cross-checks layout tables with engineering designs, and isolates electrical capacity mismatches.</p>
+          </div>
+          <div class="ai-tech-card">
+            <div class="ai-tech-card-header">
+              <div class="ai-tech-icon validation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+              <h4>RFI Validation & Audits</h4>
+            </div>
+            <p><strong>Computer Vision (YOLOv8)</strong> &amp; <strong>Structural Classification</strong>. Scans physical site photo uploads, verifies safety equipment, analyzes structural integrity certificates, and confirms grid connection lines.</p>
+          </div>
+          <div class="ai-tech-card">
+            <div class="ai-tech-card-header">
+              <div class="ai-tech-icon air"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg></div>
+              <h4>SLA & Site on Air Handover</h4>
+            </div>
+            <p><strong>Predictive Chronology Engine</strong> &amp; <strong>Reinforcement Learning (RL)</strong>. Calculates timeline drift threats, prioritizes at-risk operator handovers, and schedules auto-nudge escalation pathways.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- AI OVERLAY -->
+  <div class="ai-overlay" id="ai-overlay">
+    <div class="ai-overlay-content">
+      <div class="ai-spinner"></div>
+      <h3>AI Engine Processing</h3>
+      <p id="ai-overlay-msg">Extracting SR data from emails...</p>
+      <div class="ai-progress-bar"><div class="ai-progress-fill" id="ai-progress-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION PANEL -->
+  <div class="notif-panel" id="notif-panel">
+    <div class="notif-header">
+      <span>Notifications</span>
+      <button id="notif-close">×</button>
+    </div>
+    <div class="notif-items" id="notif-items"></div>
+  </div>
+
+  <!-- NUDGE MODAL -->
+  <div class="nudge-modal-backdrop" id="nudge-modal-backdrop">
+    <div class="nudge-modal" id="nudge-modal">
+      <div class="nudge-modal-header">
+        <div class="nudge-modal-title">
+          <div class="nudge-modal-icon">💬</div>
+          <div>
+            <div style="font-size:17px;font-weight:700">Nudge Field Agent</div>
+            <div style="font-size:12px;color:var(--text-muted)" id="nudge-modal-sr-label">SR Reference</div>
+          </div>
+        </div>
+        <button class="nudge-modal-close" id="nudge-modal-close">×</button>
+      </div>
+      <div class="nudge-modal-body">
+        <div class="nudge-agent-info" id="nudge-agent-info"></div>
+        <div class="nudge-channel-selector">
+          <div class="nudge-channel-label">Send via</div>
+          <div class="nudge-channel-options">
+            <button class="nudge-channel-btn active" data-channel="whatsapp" id="ch-whatsapp">
+              <span class="channel-icon">📱</span><span>WhatsApp</span>
+            </button>
+            <button class="nudge-channel-btn" data-channel="teams" id="ch-teams">
+              <span class="channel-icon">💼</span><span>MS Teams</span>
+            </button>
+          </div>
+        </div>
+        <div class="nudge-missing-fields" id="nudge-missing-fields"></div>
+        <div class="nudge-msg-section">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div class="nudge-section-label">Message Preview (editable)</div>
+            <button class="btn-sm" style="background:var(--purple-bg);color:var(--purple);border:1px solid rgba(168,85,247,0.3);cursor:pointer;font-size:11px;padding:4px 10px;border-radius:6px;font-weight:600" id="regenerate-msg-btn">✨ AI Regenerate</button>
+          </div>
+          <div class="nudge-channel-preview" id="nudge-channel-preview"></div>
+          <textarea class="nudge-msg-textarea" id="nudge-msg-textarea" rows="7"></textarea>
+        </div>
+        <div class="nudge-schedule-row">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);cursor:pointer">
+            <input type="checkbox" id="nudge-schedule-check" style="accent-color:var(--accent)" />
+            Schedule auto re-nudge if no response in
+          </label>
+          <select id="nudge-remind-interval" class="form-select" style="width:140px;padding:6px 10px;font-size:12px">
+            <option>2 hours</option><option>4 hours</option><option>8 hours</option><option>Next day 9 AM</option>
+          </select>
+        </div>
+      </div>
+      <div class="nudge-modal-footer">
+        <button class="btn-lg primary" id="nudge-send-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2"/><polygon points="22,2 15,22 11,13 2,9 22,2" stroke="currentColor" stroke-width="2" fill="currentColor"/></svg>
+          Send Nudge
+        </button>
+        <button class="btn-lg" style="background:var(--bg-input);color:var(--text-secondary);border:1px solid var(--border);cursor:pointer" id="nudge-cancel-btn">Cancel</button>
+        <div class="nudge-send-status" id="nudge-send-status"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SR DETAIL MODAL -->
+  <div class="nudge-modal-backdrop" id="sr-detail-modal-backdrop" style="z-index: 10000;">
+    <div class="nudge-modal" style="width: 700px; max-width: 95vw; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+      <div class="nudge-modal-header" style="border-bottom: 1px solid var(--border-light); padding-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+        <div class="nudge-modal-title" style="display: flex; align-items: center; gap: 12px;">
+          <div style="background: var(--accent-glow); color: var(--accent); padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 16px; border: 1px solid rgba(59, 130, 246, 0.15); font-family: var(--font-mono);" id="sr-modal-badge-id">SR-xxxx</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);" id="sr-modal-title-site">Site ID – Circle</div>
+            <div style="font-size: 12px; color: var(--text-secondary);" id="sr-modal-subtitle-details">Operator · Priority · SLA Class</div>
+          </div>
+        </div>
+        <button class="nudge-modal-close" id="sr-detail-modal-close" style="font-size: 24px; background: none; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%;">×</button>
+      </div>
+      <div class="nudge-modal-body" style="padding: 10px 0; max-height: 55vh; overflow-y: auto;">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;" id="sr-modal-grid-fields">
+          <!-- Dynamically populated fields -->
+        </div>
+      </div>
+      <div class="nudge-modal-footer" style="border-top: 1px solid var(--border-light); padding-top: 16px; display: flex; justify-content: flex-end; gap: 12px; align-items: center;">
+        <button class="btn-lg" style="background: var(--bg-input); color: var(--text-secondary); border: 1px solid var(--border); padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 8px;" id="sr-modal-close-btn">Close</button>
+        <button class="btn-lg primary" id="sr-modal-action-btn" style="padding: 8px 16px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+          ✓ Advance Stage
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
